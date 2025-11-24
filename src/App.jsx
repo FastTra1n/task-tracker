@@ -1,7 +1,9 @@
 import './App.css'
 import './components/TechnologyCard.css'
+import './components/ProgressHeader.css'
 
 import TechnologyCard from './components/TechnologyCard'
+import ProgressHeader from './components/ProgressHeader';
 
 function App() {
   const technologies = [ 
@@ -12,6 +14,8 @@ function App() {
 
   return (
     <>
+      <ProgressHeader techs={technologies} />
+
       <h2>Список задач</h2>
       <ul>
         {technologies.map(tech => (
