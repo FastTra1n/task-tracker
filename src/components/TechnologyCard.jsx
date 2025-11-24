@@ -27,6 +27,10 @@ function TechnologyCard({ title, description, status }) {
         <h3 className="tech-card__title">{title}</h3>
         <p className="tech-card__description">{description}</p>
       </div>
+
+      <div className="tech-card__progress">
+        <div className={`tech-card__progress-fill ${status}`}></div>
+      </div>
     </div>
   );
 }
