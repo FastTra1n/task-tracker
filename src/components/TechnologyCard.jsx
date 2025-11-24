@@ -5,7 +5,7 @@ function TechnologyCard({ title, description, status }) {
     statusIcon = '✅';
     statusText = 'Выполнено';
   }
-  else if (status == 'pending') {
+  else if (status == 'in-progress') {
     statusIcon = '🔥';
     statusText = 'Выполняется';
   }

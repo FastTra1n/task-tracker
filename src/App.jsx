@@ -1,26 +1,31 @@
+import './App.css'
 import './components/TechnologyCard.css'
+
 import TechnologyCard from './components/TechnologyCard'
 
 function App() {
+  const technologies = [ 
+    { id: 1, title: 'React Components', description: 'Изучение базовых компонентов', status: 'completed' }, 
+    { id: 2, title: 'JSX Syntax', description: 'Освоение синтаксиса JSX', status: 'in-progress' }, 
+    { id: 3, title: 'State Management', description: 'Работа с состоянием компонентов', status: 'not-started' }
+  ];
+
   return (
     <>
-      <TechnologyCard
-        title='React Components'
-        description='Изучение базовых компонентов'
-        status='planned'
-      />
-      
-      <TechnologyCard
-      title='JSX Syntax'
-      description='Освоение синтаксиса JSX'
-      status='pending'
-    />
-
-    <TechnologyCard
-      title='State Management'
-      description='Работа с состоянием компонентов'
-      status='completed'
-    />
+      <h2>Список задач</h2>
+      <ul>
+        {technologies.map(tech => (
+          <li
+          key={tech.id}
+          >
+            <TechnologyCard
+              title={tech.title}
+              description={tech.description}
+              status={tech.status}
+            />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
