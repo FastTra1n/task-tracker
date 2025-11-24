@@ -1,0 +1,95 @@
+/* Карточка технологии */
+:root {
+    --completed-color: #10b981;
+    --in-progress-color: #f59e0b;
+    --not-started-color: #94a3b8;
+
+    --content-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.tech-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  max-width: 380px;
+  font-family: var(--content-font);
+}
+
+.tech-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.tech-card .not-started {
+  border-color: var(--not-started-color);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.tech-card .in-progress {
+  border-color: var(--in-progress-color);
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.tech-card .completed {
+  border-color: var(--completed-color);
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+}
+
+.tech-card__header {
+  margin-bottom: 16px;
+}
+
+.tech-card__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tech-card__icon {
+  font-size: 20px;
+}
+
+.tech-card__content {
+    font-family: var(--content-font);
+}
+
+.tech-card__title {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.tech-card__description {
+  margin: 0;
+  color: #475569;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.tech-card__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+
+.tech-card__progress-fill {
+  height: 100%;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  transition: all 0.4s ease;
+}
