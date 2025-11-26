@@ -3,9 +3,11 @@ import { useState } from 'react'
 import './App.css'
 import './components/TechnologyCard.css'
 import './components/ProgressHeader.css'
+import './components/QuickActions.css'
 
 import TechnologyCard from './components/TechnologyCard'
 import ProgressHeader from './components/ProgressHeader';
+import QuickActions from './components/QuickActions'
 
 function App() {
   const [technologies, setTechnologies] = useState([ 
@@ -49,13 +51,34 @@ function App() {
 
   const handleStatusChange = (id, newStatus) => {
     setTechnologies(prev => prev.map(tech =>
-      tech.id === id ? {...tech, status: newStatus} : tech
+      tech.id === id ? { ...tech, status: newStatus } : tech
     ));
   };
+
+  const markAllCompleted = () => {
+    setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'completed' })));
+  };
+  
+  const markAllNotStarted = () => {
+    setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'not-started' })));
+  };
+
+  const markRandomNext = () => {
+    const uncompletedTechs = technologies.filter(t => t.status !== 'completed' && t.status !== 'in-progress');
+    if (uncompletedTechs.length === 0) return;
+
+    const randomTech = uncompletedTechs[Math.floor(Math.random() * uncompletedTechs.length)];
+    handleStatusChange(randomTech.id, 'in-progress');
+  }
 
   return (
     <>
       <ProgressHeader techs={technologies} />
+      <QuickActions
+        onMarkAllCompleted={markAllCompleted}
+        onMarkAllNotStarted={markAllNotStarted}
+        onMarkRandomNext={markRandomNext}
+      />
 
       <h2>Список задач</h2>
       <div className="task-wrapper">
