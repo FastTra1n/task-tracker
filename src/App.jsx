@@ -4,10 +4,12 @@ import './App.css'
 import './components/TechnologyCard.css'
 import './components/ProgressHeader.css'
 import './components/QuickActions.css'
+import './components/FilterTabs.css'
 
 import TechnologyCard from './components/TechnologyCard'
 import ProgressHeader from './components/ProgressHeader';
 import QuickActions from './components/QuickActions'
+import FilterTabs from './components/FilterTabs'
 
 function App() {
   const [technologies, setTechnologies] = useState([ 
@@ -49,6 +51,8 @@ function App() {
     }
   ]);
 
+  const [filter, setFilter] = useState('all');
+
   const handleStatusChange = (id, newStatus) => {
     setTechnologies(prev => prev.map(tech =>
       tech.id === id ? { ...tech, status: newStatus } : tech
@@ -71,6 +75,11 @@ function App() {
     handleStatusChange(randomTech.id, 'in-progress');
   }
 
+  const filteredTechs = technologies.filter(tech => {
+    if (filter === 'all') return true;
+    return tech.status === filter;
+  })
+
   return (
     <>
       <ProgressHeader techs={technologies} />
@@ -79,10 +88,14 @@ function App() {
         onMarkAllNotStarted={markAllNotStarted}
         onMarkRandomNext={markRandomNext}
       />
+      <FilterTabs
+        currentFilter={filter}
+        onFilterChange={setFilter}
+      />
 
       <h2>Список задач</h2>
       <div className="task-wrapper">
-        {technologies.map(tech => (
+        {filteredTechs.map(tech => (
           <TechnologyCard
               key={tech.id}
               id={tech.id}
