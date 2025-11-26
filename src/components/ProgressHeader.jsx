@@ -1,6 +1,8 @@
 function ProgressHeader({ techs }) {
   const totalQuanity = techs.length
   const completedQuanity = techs.filter(tech => tech.status == 'completed').length
+  const inProgressQuanity = techs.filter(tech => tech.status == 'in-progress').length
+  const notStartedQuanity = techs.filter(tech => tech.status == 'not-started').length
   const completedPercentage = Math.round(completedQuanity / totalQuanity * 100)
   
   return (
@@ -16,6 +18,12 @@ function ProgressHeader({ techs }) {
         <div className="progress-header__stat">
           <span className="stat__label">Изученных технологий: </span>
           <span className="stat__number">{completedQuanity}</span>
+
+          <span className="stat__label">Изучающиеся технологий: </span>
+          <span className="stat__number">{inProgressQuanity}</span>
+
+          <span className="stat__label">Неизученные технологий: </span>
+          <span className="stat__number">{notStartedQuanity}</span>
         </div>
 
         <div className="progress-header__stat">

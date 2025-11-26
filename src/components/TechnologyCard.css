@@ -12,17 +12,24 @@
   background: #ffffff;
   border-radius: 12px;
   padding: 24px;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 2px solid transparent;
   transition: all 0.3s ease;
   max-width: 380px;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
   font-family: var(--content-font);
 }
 
 .tech-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.tech-card:active {
+  transform: translateY(-4px) scale(0.98);
 }
 
 .tech-card .not-started {

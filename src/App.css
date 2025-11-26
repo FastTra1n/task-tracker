@@ -1,9 +1,16 @@
 #root {
-  max-width: 1280px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 2rem;
 }
 
 body {
   background: #f8fafc;
+}
+
+/* Область с задачами */
+
+.task-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
 }

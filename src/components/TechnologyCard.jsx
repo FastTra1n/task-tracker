@@ -1,4 +1,6 @@
-function TechnologyCard({ title, description, status }) {
+function TechnologyCard({ id, title, description, status, onStatusChange }) {
+  const nextStatus = status === 'not-started' ? 'in-progress' :
+                     status === 'in-progress' ? 'completed' : 'not-started';
   let statusIcon, statusText;
 
   if (status == 'completed') {
@@ -14,8 +16,15 @@ function TechnologyCard({ title, description, status }) {
     statusText = 'Планируется'
   }
 
+  const changeStatus = () => {
+    onStatusChange(id, nextStatus)
+  }
+
   return (
-    <div className="tech-card">
+    <div
+      className="tech-card"
+      onClick={changeStatus}
+    >
       <div className="tech-card__header">
         <div className="tech-card__status">
           <span className="tech-card__icon">{statusIcon}</span>
