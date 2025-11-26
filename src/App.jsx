@@ -17,19 +17,16 @@ function App() {
       <ProgressHeader techs={technologies} />
 
       <h2>Список задач</h2>
-      <ul>
+      <div className="task-wrapper">
         {technologies.map(tech => (
-          <li
-          key={tech.id}
-          >
-            <TechnologyCard
+          <TechnologyCard
+              key={tech.id}
               title={tech.title}
               description={tech.description}
               status={tech.status}
             />
-          </li>
         ))}
-      </ul>
+      </div>
     </>
   );
 }

@@ -7,3 +7,11 @@
 body {
   background: #f8fafc;
 }
+
+/* Область с задачами */
+
+.task-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
