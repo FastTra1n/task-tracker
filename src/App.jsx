@@ -5,6 +5,7 @@ import './components/TechnologyCard.css'
 import './components/ProgressHeader.css'
 import './components/QuickActions.css'
 import './components/FilterTabs.css'
+import "./components/TechnologyNotes.css"
 
 import TechnologyCard from './components/TechnologyCard'
 import ProgressHeader from './components/ProgressHeader';

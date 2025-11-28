@@ -7,6 +7,11 @@
     --content-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.tech {
+  max-width: 380px;
+  width: 100%;
+}
+
 .tech-card {
   position: relative;
   background: #ffffff;
@@ -16,8 +21,8 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 2px solid transparent;
   transition: all 0.3s ease;
-  max-width: 380px;
-  width: 100%;
+  /* max-width: 380px; */
+  /* width: 100%; */
   cursor: pointer;
   user-select: none;
   font-family: var(--content-font);

@@ -23,7 +23,7 @@ function TechnologyCard({ id, title, description, status, notes, onStatusChange,
   }
 
   return (
-    <>
+    <div className="tech">
       <div
       className="tech-card"
       onClick={changeStatus}
@@ -50,7 +50,7 @@ function TechnologyCard({ id, title, description, status, notes, onStatusChange,
         onNotesChange={onNotesChange}
         techId={id}
       />
-    </>
+    </div>
   );
 }
 
