@@ -6,7 +6,8 @@ function TechnologyNotes({ notes, onNotesChange, techId }) {
         value={notes}
         onChange={(e) => onNotesChange(techId, e.target.value)}
         placeholder="Записывайте сюда важные моменты..."
-        rows="3" 
+        rows="3"
+        spellCheck="true"
       />
       <div className="notes-hint">
         {notes.length > 0 ? `Заметка сохранена (${notes.length} символов)` : 'Добавьте заметку'}
