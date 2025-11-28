@@ -34,3 +34,22 @@
   border-color: #1e293b;
   box-shadow: 0 8px 25px rgba(30, 41, 59, 0.25);
 }
+
+.filter-tabs__search {
+  margin-left: 30px;
+  position: relative;
+  max-width: 500px;
+  height: 35px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.filter-tabs__search:focus {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}

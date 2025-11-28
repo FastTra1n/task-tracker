@@ -18,7 +18,7 @@ function FilterTabs({ currentFilter, onFilterChange, onQueryChange }) {
             </button>
         ))}
         <input
-          type="filter-tabs__search"
+          className="filter-tabs__search"
           onChange={(e) => onQueryChange(e.target.value)}
         />
     </div>
