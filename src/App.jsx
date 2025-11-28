@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import './App.css'
 import './components/TechnologyCard.css'
 import './components/ProgressHeader.css'
 import './components/QuickActions.css'
 import './components/FilterTabs.css'
+import "./components/TechnologyNotes.css"
 
 import TechnologyCard from './components/TechnologyCard'
 import ProgressHeader from './components/ProgressHeader';
@@ -12,46 +13,65 @@ import QuickActions from './components/QuickActions'
 import FilterTabs from './components/FilterTabs'
 
 function App() {
-  const [technologies, setTechnologies] = useState([ 
-    {  
-      id: 1,  
-      title: 'React Components',  
-      description: 'Изучение базовых компонентов',  
-      status: 'completed'  
-    }, 
-    {  
-      id: 2,  
-      title: 'JSX Syntax',  
-      description: 'Освоение синтаксиса JSX',  
-      status: 'in-progress'  
-    },
-    {  
-      id: 3,  
-      title: 'State Management',  
-      description: 'Работа с состоянием компонентов',  
-      status: 'not-started'  
-    },
-    {
-      id: 4,
-      title: 'Hooks',
-      description: 'useState, useEffect, useContext и др.',
-      status: 'not-started'
-    },
-    {
-      id: 5,
-      title: 'React Router',
-      description: 'Навигация в SPA',
-      status: 'not-started'
-    },
-    {
-      id: 6,
-      title: 'Zustand / Redux',
-      description: 'Глобальное состояние',
-      status: 'completed'
+  const [technologies, setTechnologies] = useState(() => {
+    const saved = localStorage.getItem('techTrackerData'); 
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return parsed;
     }
-  ]);
+    return [ 
+      {  
+        id: 1,  
+        title: 'React Components',  
+        description: 'Изучение базовых компонентов',  
+        status: 'completed',
+        notes: ''
+      }, 
+      {  
+        id: 2,  
+        title: 'JSX Syntax',  
+        description: 'Освоение синтаксиса JSX',  
+        status: 'in-progress',
+        notes: ''
+      },
+      {  
+        id: 3,  
+        title: 'State Management',  
+        description: 'Работа с состоянием компонентов',  
+        status: 'not-started',
+        notes: ''
+      },
+      {
+        id: 4,
+        title: 'Hooks',
+        description: 'useState, useEffect, useContext и др.',
+        status: 'not-started',
+        notes: ''
+      },
+      {
+        id: 5,
+        title: 'React Router',
+        description: 'Навигация в SPA',
+        status: 'not-started',
+        notes: ''
+      },
+      {
+        id: 6,
+        title: 'Zustand / Redux',
+        description: 'Глобальное состояние',
+        status: 'completed',
+        notes: ''
+      }
+    ]
+  });
 
   const [filter, setFilter] = useState('all');
+  const [searсhQuery, setSearchQuery] = useState('')
+
+  useEffect(() => {
+    localStorage.setItem('techTrackerData', JSON.stringify(technologies));
+    console.log('Данные сохранены в localStorage');
+  }, [technologies]);
 
   const handleStatusChange = (id, newStatus) => {
     setTechnologies(prev => prev.map(tech =>
@@ -76,9 +96,20 @@ function App() {
   }
 
   const filteredTechs = technologies.filter(tech => {
-    if (filter === 'all') return true;
-    return tech.status === filter;
+    const hasSearchQuery = tech.title.toLowerCase().includes(searсhQuery.toLowerCase())
+      || tech.description.toLowerCase().includes(searсhQuery.toLowerCase());
+    const hasStatus = tech.status === filter || filter === 'all';
+    
+    return hasStatus && hasSearchQuery;
   })
+
+  const updateTechnologyNotes = (techId, newNotes) => { 
+    setTechnologies(prev =>
+      prev.map(tech =>
+        tech.id === techId ? { ...tech, notes: newNotes } : tech 
+      ) 
+    ); 
+  }
 
   return (
     <>
@@ -91,6 +122,7 @@ function App() {
       <FilterTabs
         currentFilter={filter}
         onFilterChange={setFilter}
+        onQueryChange={setSearchQuery}
       />
 
       <h2>Список задач</h2>
@@ -102,7 +134,9 @@ function App() {
               title={tech.title}
               description={tech.description}
               status={tech.status}
+              notes={tech.notes}
               onStatusChange={handleStatusChange}
+              onNotesChange={updateTechnologyNotes}
           />
         ))}
       </div>

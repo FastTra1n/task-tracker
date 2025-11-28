@@ -1,4 +1,6 @@
-function TechnologyCard({ id, title, description, status, onStatusChange }) {
+import TechnologyNotes from "./TechnologyNotes";
+
+function TechnologyCard({ id, title, description, status, notes, onStatusChange, onNotesChange }) {
   const nextStatus = status === 'not-started' ? 'in-progress' :
                      status === 'in-progress' ? 'completed' : 'not-started';
   let statusIcon, statusText;
@@ -21,7 +23,8 @@ function TechnologyCard({ id, title, description, status, onStatusChange }) {
   }
 
   return (
-    <div
+    <div className="tech">
+      <div
       className="tech-card"
       onClick={changeStatus}
     >
@@ -40,6 +43,13 @@ function TechnologyCard({ id, title, description, status, onStatusChange }) {
       <div className="tech-card__progress">
         <div className={`tech-card__progress-fill ${status}`}></div>
       </div>
+    </div>
+
+    <TechnologyNotes
+        notes={notes}
+        onNotesChange={onNotesChange}
+        techId={id}
+      />
     </div>
   );
 }

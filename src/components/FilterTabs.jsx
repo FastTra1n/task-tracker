@@ -1,4 +1,4 @@
-function FilterTabs({ currentFilter, onFilterChange }) {
+function FilterTabs({ currentFilter, onFilterChange, onQueryChange }) {
   const filters = [
     { key: 'all', label: 'Все'},
     { key: 'completed', label: 'Выполненные'},
@@ -17,6 +17,10 @@ function FilterTabs({ currentFilter, onFilterChange }) {
                 {f.label}
             </button>
         ))}
+        <input
+          className="filter-tabs__search"
+          onChange={(e) => onQueryChange(e.target.value)}
+        />
     </div>
   );
 }
