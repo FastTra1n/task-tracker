@@ -66,6 +66,7 @@ function App() {
   });
 
   const [filter, setFilter] = useState('all');
+  const [searсhQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     localStorage.setItem('techTrackerData', JSON.stringify(technologies));
@@ -95,8 +96,11 @@ function App() {
   }
 
   const filteredTechs = technologies.filter(tech => {
-    if (filter === 'all') return true;
-    return tech.status === filter;
+    const hasSearchQuery = tech.title.toLowerCase().includes(searсhQuery.toLowerCase())
+      || tech.description.toLowerCase().includes(searсhQuery.toLowerCase());
+    const hasStatus = tech.status === filter || filter === 'all';
+    
+    return hasStatus && hasSearchQuery;
   })
 
   const updateTechnologyNotes = (techId, newNotes) => { 
@@ -118,6 +122,7 @@ function App() {
       <FilterTabs
         currentFilter={filter}
         onFilterChange={setFilter}
+        onQueryChange={setSearchQuery}
       />
 
       <h2>Список задач</h2>
