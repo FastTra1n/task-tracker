@@ -99,7 +99,7 @@ function App() {
     const hasSearchQuery = tech.title.toLowerCase().includes(searсhQuery.toLowerCase())
       || tech.description.toLowerCase().includes(searсhQuery.toLowerCase());
     const hasStatus = tech.status === filter || filter === 'all';
-    
+
     return hasStatus && hasSearchQuery;
   })
 
@@ -118,6 +118,7 @@ function App() {
         onMarkAllCompleted={markAllCompleted}
         onMarkAllNotStarted={markAllNotStarted}
         onMarkRandomNext={markRandomNext}
+        technologies={technologies}
       />
       <FilterTabs
         currentFilter={filter}
