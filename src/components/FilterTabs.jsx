@@ -18,8 +18,10 @@ function FilterTabs({ currentFilter, onFilterChange, onQueryChange }) {
             </button>
         ))}
         <input
+          type="search"
           className="filter-tabs__search"
           onChange={(e) => onQueryChange(e.target.value)}
+          spellCheck="true"
         />
     </div>
   );
