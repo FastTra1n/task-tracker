@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; 
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import './App.css'
 import './components/TechnologyCard.css'
@@ -14,6 +14,7 @@ import ProgressHeader from './components/ProgressHeader';
 import QuickActions from './components/QuickActions'
 import FilterTabs from './components/FilterTabs'
 import Navigation from './components/Navigation'
+import Home from './pages/Home';
 
 function App() {
   const [technologies, setTechnologies] = useState(() => {
@@ -116,10 +117,12 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navigation />
-      </Router>
-      <ProgressHeader techs={technologies} />
+      <Navigation />
+
+      <Routes>
+        <Route path="/" element={<Home />}/>
+      </Routes>
+      {/* <ProgressHeader techs={technologies} />
       <QuickActions
         onMarkAllCompleted={markAllCompleted}
         onMarkAllNotStarted={markAllNotStarted}
@@ -146,7 +149,7 @@ function App() {
               onNotesChange={updateTechnologyNotes}
           />
         ))}
-      </div>
+      </div> */}
     </>
   );
 }
