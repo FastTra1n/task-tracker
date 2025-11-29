@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; 
 
 import './App.css'
 import './components/TechnologyCard.css'
@@ -6,11 +7,13 @@ import './components/ProgressHeader.css'
 import './components/QuickActions.css'
 import './components/FilterTabs.css'
 import "./components/TechnologyNotes.css"
+import "./components/Navigation.css"
 
 import TechnologyCard from './components/TechnologyCard'
 import ProgressHeader from './components/ProgressHeader';
 import QuickActions from './components/QuickActions'
 import FilterTabs from './components/FilterTabs'
+import Navigation from './components/Navigation'
 
 function App() {
   const [technologies, setTechnologies] = useState(() => {
@@ -113,6 +116,9 @@ function App() {
 
   return (
     <>
+      <Router>
+        <Navigation />
+      </Router>
       <ProgressHeader techs={technologies} />
       <QuickActions
         onMarkAllCompleted={markAllCompleted}
