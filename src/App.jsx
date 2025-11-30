@@ -9,6 +9,7 @@ import './components/FilterTabs.css'
 import "./components/TechnologyNotes.css"
 import "./components/Navigation.css"
 import "./pages/Home.css"
+import "./pages/TechnologyList.css"
 
 import TechnologyCard from './components/TechnologyCard'
 import ProgressHeader from './components/ProgressHeader';
@@ -16,6 +17,7 @@ import QuickActions from './components/QuickActions'
 import FilterTabs from './components/FilterTabs'
 import Navigation from './components/Navigation'
 import Home from './pages/Home';
+import TechnologyList from './pages/TechnologyList';
 
 function App() {
   const [technologies, setTechnologies] = useState(() => {
@@ -122,6 +124,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />}/>
+        <Route path="/technologies" element={<TechnologyList />}/>
       </Routes>
       {/* <ProgressHeader techs={technologies} />
       <QuickActions
