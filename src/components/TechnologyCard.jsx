@@ -1,3 +1,5 @@
+ import { Link } from 'react-router-dom'; 
+
 import TechnologyNotes from "./TechnologyNotes";
 
 function TechnologyCard({ id, title, description, status, notes, onStatusChange, onNotesChange }) {
@@ -50,6 +52,10 @@ function TechnologyCard({ id, title, description, status, notes, onStatusChange,
         onNotesChange={onNotesChange}
         techId={id}
       />
+
+    <Link to={`/technology/${id}`} className="btn-link">
+      Подробнее →
+    </Link>
     </div>
   );
 }
