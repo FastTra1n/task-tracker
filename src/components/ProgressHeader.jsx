@@ -7,7 +7,7 @@ function ProgressHeader({ techs }) {
   
   return (
     <div className="progress-header">
-      <h1>Дорожная карта</h1>
+      <h1>Прогресс дорожной карты</h1>
       
       <div className="progress-header__stats">
         <div className="progress-header__stat">
