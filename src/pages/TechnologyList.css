@@ -102,7 +102,6 @@
   text-decoration: underline;
 }
 
-/* Пустое состояние */
 .empty-state {
   text-align: center;
   padding: 120px 20px;
@@ -116,7 +115,6 @@
   margin-bottom: 32px;
 }
 
-/* Кнопки (если ещё не определены глобально) */
 .btn-primary {
   background: #3b82f6;
   color: white;

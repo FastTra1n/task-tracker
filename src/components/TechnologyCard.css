@@ -1,10 +1,9 @@
 /* Карточка технологии */
 :root {
-    --completed-color: #10b981;
-    --in-progress-color: #f59e0b;
-    --not-started-color: #94a3b8;
-
-    --content-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  --completed-color: #10b981;
+  --in-progress-color: #f59e0b;
+  --not-started-color: #94a3b8;
+  --content-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .tech {

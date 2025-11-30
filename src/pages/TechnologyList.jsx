@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import TechnologyCard from "../components/TechnologyCard";
+import QuickActions from "../components/QuickActions";
+import FilterTabs from "../components/FilterTabs";
 
 function TechnologyList() {
   const [technologies, setTechnologies] = useState(() => {
@@ -55,6 +57,8 @@ function TechnologyList() {
       }
     ]
   });
+  const [filter, setFilter] = useState('all');
+  const [searсhQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     localStorage.setItem('techTrackerData', JSON.stringify(technologies));
@@ -75,6 +79,31 @@ function TechnologyList() {
     ); 
   }
 
+  const markAllCompleted = () => {
+    setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'completed' })));
+  };
+  
+  const markAllNotStarted = () => {
+    setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'not-started' })));
+  };
+
+  const markRandomNext = () => {
+    const uncompletedTechs = technologies.filter(t => t.status !== 'completed' && t.status !== 'in-progress');
+    if (uncompletedTechs.length === 0) return;
+
+    const randomTech = uncompletedTechs[Math.floor(Math.random() * uncompletedTechs.length)];
+    handleStatusChange(randomTech.id, 'in-progress');
+  }
+
+  const filteredTechs = technologies.filter(tech => {
+    const hasSearchQuery = tech.title.toLowerCase().includes(searсhQuery.toLowerCase())
+      || tech.description.toLowerCase().includes(searсhQuery.toLowerCase());
+    const hasStatus = tech.status === filter || filter === 'all';
+
+    return hasStatus && hasSearchQuery;
+  })
+
+
   return (
     <div className="page">
       <div className="page-header">
@@ -83,9 +112,22 @@ function TechnologyList() {
             + Добавить технологию
           </Link>
       </div>
+
+      <QuickActions
+        onMarkAllCompleted={markAllCompleted}
+        onMarkAllNotStarted={markAllNotStarted}
+        onMarkRandomNext={markRandomNext}
+        technologies={technologies}
+      />
+
+      <FilterTabs
+        currentFilter={filter}
+        onFilterChange={setFilter}
+        onQueryChange={setSearchQuery}
+      />
       
       <div className="technologies-grid">
-        {technologies.map(tech => (
+        {filteredTechs.map(tech => (
           <TechnologyCard
             id={tech.id}
             title={tech.title}
@@ -95,22 +137,10 @@ function TechnologyList() {
             onStatusChange={handleStatusChange}
             onNotesChange={updateTechnologyNotes}
           />
-        //   <div key={tech.id} className="technology-item">
-        //     <h3>{tech.title}</h3>
-        //     <p>{tech.description}</p>
-        //     <div className="technology-meta">
-        //       <span className={`status status-${tech.status}`}>
-        //         {tech.status}
-        //       </span>
-        //       <Link to={`/technology/${tech.id}`} className="btn-link">
-        //         Подробнее →
-        //       </Link>
-        //     </div>
-        //   </div>
         ))}
       </div>
       
-      {technologies.length === 0 && (
+      {filteredTechs.length === 0 && (
         <div className="empty-state">
           <p>Технологий пока нет.</p>
             <Link to="/add-technology" className="btn btn-primary">
