@@ -18,6 +18,7 @@ import FilterTabs from './components/FilterTabs'
 import Navigation from './components/Navigation'
 import Home from './pages/Home';
 import TechnologyList from './pages/TechnologyList';
+import AddTechnology from './pages/AddTechnology';
 
 function App() {
   const [technologies, setTechnologies] = useState(() => {
@@ -125,6 +126,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/technologies" element={<TechnologyList />}/>
+        <Route path="/add-technology" element={<AddTechnology />}/>
       </Routes>
       {/* <ProgressHeader techs={technologies} />
       <QuickActions
