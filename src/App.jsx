@@ -11,6 +11,7 @@ import "./components/Navigation.css"
 import "./pages/Home.css"
 import "./pages/TechnologyList.css"
 import "./pages/Login.css"
+import "./pages/Settings.css"
 
 import Navigation from './components/Navigation'
 import Home from './pages/Home';
@@ -18,6 +19,8 @@ import TechnologyList from './pages/TechnologyList';
 import AddTechnology from './pages/AddTechnology';
 import Statistics from './pages/Statistics';
 import Login from './pages/Login';
+import Settings from './pages/Settings';
+
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -69,6 +72,13 @@ function App() {
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
               <Statistics />
+            </ProtectedRoute>
+          }/>
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Settings />
             </ProtectedRoute>
           }/>
       </Routes>
