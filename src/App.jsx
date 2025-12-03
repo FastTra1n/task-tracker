@@ -18,6 +18,7 @@ import TechnologyList from './pages/TechnologyList';
 import AddTechnology from './pages/AddTechnology';
 import Statistics from './pages/Statistics';
 import Login from './pages/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -49,9 +50,27 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login onLogin={handleLogin} />}/>
-        <Route path="/technologies" element={<TechnologyList />}/>
-        <Route path="/add-technology" element={<AddTechnology />}/>
-        <Route path="/statistics" element={<Statistics />}/>
+        <Route
+          path="/technologies"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <TechnologyList />
+            </ProtectedRoute>
+          }/>
+        <Route
+          path="/add-technology"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <AddTechnology />
+            </ProtectedRoute>
+          }/>
+        <Route
+          path="/statistics"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Statistics />
+            </ProtectedRoute>
+          }/>
       </Routes>
     </>
   );
