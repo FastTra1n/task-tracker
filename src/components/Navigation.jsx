@@ -2,13 +2,26 @@ import { Link, useLocation } from 'react-router-dom';
 
 function Navigation() { 
   const location = useLocation(); 
+  const isLoggedIn = localStorage.getItem('isLoggedIn')
+  const username = localStorage.getItem('username')
 
   return ( 
     <nav className="main-navigation"> 
       <div className="nav-brand"> 
         <Link to="/"> 
           <h2>🚀 Трекер технологий</h2> 
-        </Link> 
+        </Link>
+
+        {!isLoggedIn ? (
+          <Link to="/login">
+            <p className="nav-brand__login">Войти</p>
+          </Link>
+        ) : (
+          <Link to="/settings">
+            <p className="nav-brand__login">{username}</p>
+          </Link>
+        )}
+        
       </div>
 
       <ul className="nav-menu">
