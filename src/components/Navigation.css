@@ -4,10 +4,25 @@
   align-items: center;
 }
 
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 300px;
+}
+
 .nav-brand a {
   font-size: 48px;
   color: black;
   text-decoration: none;
+}
+
+.nav-brand__login {
+  font-size: 24px;
+  color: #3b82f6;
+}
+
+.nav-brand__login:hover {
+  text-decoration: underline;
 }
 
 .nav-menu {
