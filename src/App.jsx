@@ -12,6 +12,7 @@ import "./pages/Home.css"
 import "./pages/TechnologyList.css"
 import "./pages/Login.css"
 import "./pages/Settings.css"
+import "./pages/TechnologyDetail.css"
 
 import Navigation from './components/Navigation'
 import Home from './pages/Home';
@@ -22,6 +23,7 @@ import Login from './pages/Login';
 import Settings from './pages/Settings';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import TechnologyDetail from './pages/TechnologyDetail';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -79,6 +81,13 @@ function App() {
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
               <Settings />
+            </ProtectedRoute>
+          }/>
+        <Route
+          path="/technology/:techId"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <TechnologyDetail />
             </ProtectedRoute>
           }/>
       </Routes>
