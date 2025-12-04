@@ -27,6 +27,18 @@ function TechnologyDetail() {
     }
   };
 
+  const updateDescription = (newDescription) => {
+    const saved = localStorage.getItem('techTrackerData');
+    if (saved) {
+        const technologies = JSON.parse(saved);
+        const updated = technologies.map(tech =>
+          tech.id === parseInt(techId) ? { ...tech, description: newDescription } : tech
+        );
+        localStorage.setItem('techTrackerData', JSON.stringify(updated));
+        setTechnology({ ...technology, description: newDescription });
+    }
+  };
+
   if (!technology) {
     return (
       <div className="page">
@@ -51,7 +63,13 @@ function TechnologyDetail() {
       <div className="technology-detail">
         <div className="detail-section">
           <h3>Описание</h3>
-          <p>{technology.description}</p>
+          <textarea
+          type="text"
+          value={technology.description}
+          onChange={(e) => updateDescription(e.target.value)}
+          placeholder="Кратко о чём эта технология и зачем её изучать..."
+          spellCheck="true"
+        />
         </div>
 
         <div className="detail-section">

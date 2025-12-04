@@ -26,26 +26,17 @@ import ProtectedRoute from './components/ProtectedRoute';
 import TechnologyDetail from './pages/TechnologyDetail';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const user = localStorage.getItem('username') || '';
-    setIsLoggedIn(loggedIn);
     setUsername(user);
   }, []);
 
   const handleLogin = (user) => { 
     setIsLoggedIn(true);
     setUsername(user);
-  };
-
-  const handleLogout = () => { 
-    localStorage.removeItem('isLoggedIn'); 
-    localStorage.removeItem('username'); 
-    setIsLoggedIn(false); 
-    setUsername(''); 
   };
 
   return (

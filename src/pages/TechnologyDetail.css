@@ -37,7 +37,6 @@
   flex: 1;
 }
 
-/* Основная карточка */
 .technology-detail {
   max-width: 900px;
   margin: 0 auto;
@@ -50,6 +49,23 @@
 .detail-section {
   padding: 48px 60px;
   border-bottom: 1px solid #e2e8f0;
+}
+
+.detail-section input,
+.detail-section textarea,
+.detail-section select {
+  width: 80%;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;  
+  font-size: 16px;
+  font-family: inherit;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+  margin-bottom: 28px;
+  min-height: 50px;
+  min-width: 500px;
+  resize: none;
 }
 
 .detail-section:last-child {
@@ -73,7 +89,6 @@
   margin: 0;
 }
 
-/* Кнопки статуса */
 .status-button {
   display: flex;
   gap: 20px;
@@ -125,12 +140,10 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Заметки */
 .detail-section:has(p:empty) {
   display: none;
 }
 
-/* Если технология не найдена */
 .page > h1 {
   text-align: center;
   font-size: 3rem;
