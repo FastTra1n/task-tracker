@@ -42,7 +42,12 @@ function QuickActions({ onMarkAllCompleted, onMarkAllNotStarted, onMarkRandomNex
       const reader = new FileReader();
       reader.onload = (event) => {
         if (event.target) {
-          resolve(JSON.parse(event.target.result))
+          try {
+            resolve(JSON.parse(event.target.result));
+          }
+          catch {
+            reject(new Error("Ошибка при импорте/парсинге файла"));
+          }
         }
       }
       reader.onerror = (error) => reject(error);
@@ -53,6 +58,11 @@ function QuickActions({ onMarkAllCompleted, onMarkAllNotStarted, onMarkRandomNex
         value => {
           localStorage.setItem('techTrackerData', JSON.stringify(value.technologies));
           onSetTechnologies(value.technologies)
+        }
+      )
+      .catch(
+        error => {
+          alert(error);
         }
       );
   }
