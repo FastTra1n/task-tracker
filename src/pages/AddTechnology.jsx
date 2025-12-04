@@ -3,9 +3,9 @@ import { useState } from "react";
 import "./AddTechnology.css"
 
 function AddTechnology() {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [status, setStatus] = useState('')
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [status, setStatus] = useState('');
   
   const handleSubmit = (e) => {
     e.preventDefault();
