@@ -117,6 +117,7 @@ function TechnologyList() {
         onMarkAllCompleted={markAllCompleted}
         onMarkAllNotStarted={markAllNotStarted}
         onMarkRandomNext={markRandomNext}
+        onSetTechnologies={setTechnologies}
         technologies={technologies}
       />
 

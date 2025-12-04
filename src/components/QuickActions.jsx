@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import Modal from "./Modal";
 
-function QuickActions({ onMarkAllCompleted, onMarkAllNotStarted, onMarkRandomNext, technologies }) {
+function QuickActions({ onMarkAllCompleted, onMarkAllNotStarted, onMarkRandomNext, onSetTechnologies, technologies }) {
   const [showExportModal, setShowExportModal] = useState(false);
+  const inputImport = useRef(null);
 
   const exportData = () => {
     const data = {
@@ -33,6 +34,27 @@ function QuickActions({ onMarkAllCompleted, onMarkAllNotStarted, onMarkRandomNex
       document.body.removeChild(link);
     }, 100)
     setShowExportModal(true);
+  };
+
+  const importData = (e) => {
+    const file = e.target.files[0];
+    const readerPromise = new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target) {
+          resolve(JSON.parse(event.target.result))
+        }
+      }
+      reader.onerror = (error) => reject(error);
+      reader.readAsText(file);
+    });
+    readerPromise
+      .then(
+        value => {
+          localStorage.setItem('techTrackerData', JSON.stringify(value.technologies));
+          onSetTechnologies(value.technologies)
+        }
+      );
   }
 
   return (
@@ -40,7 +62,9 @@ function QuickActions({ onMarkAllCompleted, onMarkAllNotStarted, onMarkRandomNex
       <button className="quick-actions__button" onClick={onMarkAllCompleted}>✅ Отметить всё как выполненное</button>
       <button className="quick-actions__button" onClick={onMarkAllNotStarted}>⏳ Сбросить все статусы</button>
       <button className="quick-actions__button" onClick={onMarkRandomNext}>🔄️ Случайный выбор следующей технологии</button>
-      <button className="quick-actions__button" onClick={exportData}>📥 Эскпорт данных</button>
+      <button className="quick-actions__button" onClick={exportData}>📤 Эскпорт данных</button>
+      <button className="quick-actions__button" onClick={() => inputImport.current.click()}>📥 Импорт данных</button>
+      <input type="file" ref={inputImport} onChange={importData} accept="application/json" hidden/>
 
       <Modal
         isOpen={showExportModal}
