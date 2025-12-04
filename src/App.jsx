@@ -41,13 +41,6 @@ function App() {
     setUsername(user);
   };
 
-  const handleLogout = () => { 
-    localStorage.removeItem('isLoggedIn'); 
-    localStorage.removeItem('username'); 
-    setIsLoggedIn(false); 
-    setUsername(''); 
-  };
-
   return (
     <>
       <Navigation />
